@@ -32,7 +32,7 @@ matrice_E[0,-1] = 1
 matrix_x = np.add(I_8, matrice_E)
 #====debug
 #print ("La matrice X : \n\n\n", matrix_x)
-print ("- Calcul de beta avec la formule du sujet")
+print ("- Calcul de beta en cours....avec la formule du sujet \n")
 #============utilisation des fonctions de la librairie numpy pour construire le beta
 Transpose = matrix_x.transpose()
 Produit1 = Transpose @ matrix_x
@@ -40,10 +40,8 @@ Inverse = np.linalg.inv(Produit1)
 Produit2 = Inverse @ Transpose
 vecteur_y = vecteur_y()
 
-#beta devient donc:
-beta = np.dot(Produit2,vecteur_y)
-print ("β =  \n\n\n",beta)
-
+#calcul de beta devient donc:
+beta = np.sum((np.linalg.inv(np.transpose(matrix_x) @ matrix_x)) @ vecteur_y)
 #=====debug
 #print ("Transpose : \n\n\n",Transpose)
 #print ( "Produit 1 : \n\n\n",Produit1)
@@ -51,17 +49,13 @@ print ("β =  \n\n\n",beta)
 #print ("Vecteur y : \n\n\n",vecteur_y())
 
 ###programme principal
-def sigma(i,n):
-        x = np.arange(i,n)
-        return np.sum([x+1])
-
 print ("                 8    \n")
 print ("* Question 1:    ∑βi \n")
 print ("                i=1 \n")
 #calcul de sigma de 1 à 8 de beta i
 print ("\n\n")
-#print ("La somme est de :",np.sum(vecteur_y))
-print ("La somme est de : \n",sigma(1,9) * vecteur_y)
+print(f"La somme de beta i={beta} \n")
+
 #donner le rang de la matrice X^T X - I8
 #calcul de la nouvelle matrice
 #n = nouvelle matrice
